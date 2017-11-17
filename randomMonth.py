@@ -4,10 +4,6 @@
 
 from random import randint
 
-months = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'Sepetember', 'October', 'November', 'December]
+months = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'Sepetember', 'October', 'November', 'December']
 
-for i in range(1,12):
-    num = randint(1,12)
-    numbers(num)
-    
-print(numbers(num))
+print(months[randint(0,11)])
