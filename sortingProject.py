@@ -7,24 +7,38 @@ from time import time
 
 N = 1000000 #how many numbers will be sorted
 
-def mySort(A):
-    swapped = True
-    while swapped:
-        swapped = False
-        for i in range(0,len(A)-1):
-            if A[ i ] > A[ i + 1 ]:
-                A[i], A[i+1] = A[i+1] , A[i] #swap in python
-                swapped = True
-        if not swapped:
-            break
-        swapped = False
-        for i in range(len(A)-2,-1,-1):
-            if A[ i ] > A[ i + 1 ]:
-                A[i], A[i+1] = A[i+1] , A[i] #swap in python
-                swapped = True
+def quickSort(A,lo, hi):
+    if lo < hi:
+        p = partition(A, lo, hi)
+        quicksort(A, lo, p - 1 )
+        quicksort(A, p + 1, hi)
         
-    return A
+def partition(A, lo, hi):
+    pivot = A[hi]
+    i = lo -1
+    for j in range(low,high):
+        if A[j] < pivot:
+            A[i], A[j] = A[j] , A[i]
+    if A[ i ] > A[ i + 1 ]:
+            A[hi], A[i+1] = A[i+1] , A[hi]
+    return(i+1)
     
+    """algorithm quicksort(A, lo, hi) is
+    if lo < hi then
+        p := partition(A, lo, hi)
+        quicksort(A, lo, p - 1 )
+        quicksort(A, p + 1, hi)
+
+algorithm partition(A, lo, hi) is
+    pivot := A[hi]
+    i := lo - 1    
+    for j := lo to hi - 1 do
+        if A[j] < pivot then
+            i := i + 1
+            swap A[i] with A[j]
+    if A[hi] < A[i + 1] then
+        swap A[i + 1] with A[hi]
+    return i + 1"""
 
 if __name__ == '__main__':
     
@@ -37,7 +51,7 @@ if __name__ == '__main__':
     
     #time how long your sort takes
     t1 = time()
-    numbers = mySort(numbers)
+    numbers = quickSort(numbers)
     t2 = time()
        
     #print whether the sort worked or not
