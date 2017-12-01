@@ -5,21 +5,23 @@
 from random import randint
 from time import time
 
-N = 1000000 #how many numbers will be sorted
+N = 100 #how many numbers will be sorted
 
 def quickSort(A,lo, hi):
     if lo < hi:
         p = partition(A, lo, hi)
-        quicksort(A, lo, p - 1 )
-        quicksort(A, p + 1, hi)
-        
+        quickSort(A, lo, p - 1 )
+        quickSort(A, p + 1, hi)
+    return A
+    
 def partition(A, lo, hi):
     pivot = A[hi]
     i = lo -1
-    for j in range(low,high):
+    for j in range(lo,hi):
         if A[j] < pivot:
+            i += 1
             A[i], A[j] = A[j] , A[i]
-    if A[ i ] > A[ i + 1 ]:
+    if A[ hi ] < A[ i + 1 ]:
             A[hi], A[i+1] = A[i+1] , A[hi]
     return(i+1)
     
@@ -51,7 +53,7 @@ if __name__ == '__main__':
     
     #time how long your sort takes
     t1 = time()
-    numbers = quickSort(numbers)
+    numbers = quickSort(numbers, 0, N-1)
     t2 = time()
        
     #print whether the sort worked or not
